@@ -1,20 +1,14 @@
 const Ship = length =>{
-    const shipLength = [];
+    const hitCount = 0;
     while (shipLength.length < length){
         shipLength.push(" ");
     };
     const hit = spot =>{
-        shipLength[spot] = "X";
+        hitCount++;
     };
     const sunk = ()=>{
-        counter = 0;
-        shipLength.forEach(spot =>{
-            if(spot === "X"){
-                counter++;
-            };
-        });
-        if (counter === shipLength.length){
-            return "Sunk";
+      if (hitCount === length){
+        return "sunk";
         };
     };
     return {shipLength, hit, sunk}
