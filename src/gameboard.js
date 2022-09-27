@@ -6,6 +6,7 @@ const Gameboard = () =>{
     const ship3 = Ship(3);
     const ship4 = Ship(4);
     const ship5 = Ship(5);
+    let misses = 0;
     const board = [
         ["1","1"," "," "," "," "," "," "," "," ",],
         [" "," "," "," "," "," ","4"," "," "," ",],
@@ -33,6 +34,10 @@ const Gameboard = () =>{
         };
     };
 
+    const checkSunk = ()=>{
+
+    };
+
     const receiveAttack = (x,y) =>{
         if (board[x][y] === "X"){
             return;
@@ -41,7 +46,7 @@ const Gameboard = () =>{
             return;
         }
         if(board[x][y] === " "){
-            board[x][y] = "O"
+            board[x][y] = "O";
         };
         let edit = checkShip(board[x][y]);
             edit.hit();
