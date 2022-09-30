@@ -6,19 +6,13 @@ const Gameboard = () =>{
     const ship3 = Ship(3);
     const ship4 = Ship(4);
     const ship5 = Ship(5);
-    let misses = 0;
-    const board = [
-        ["1","1"," "," "," "," "," "," "," "," ",],
-        [" "," "," "," "," "," ","4"," "," "," ",],
-        [" "," "," "," "," "," ","4"," "," "," ",],
-        [" "," "," "," "," "," ","4"," "," "," ",],
-        [" "," "," "," "," "," ","4"," "," "," ",],
-        [" "," "," "," "," "," "," "," "," "," ",],
-        ["2"," "," "," "," ","5","5","5","5","5",],
-        ["2"," "," "," "," "," "," "," "," "," ",],
-        ["2"," ","3","3","3"," "," "," "," "," ",],
-        [" "," "," "," "," "," "," "," "," "," ",],
-    ];
+    let totalSunk = 0;
+    let missedAttacks = 0;
+    const createGameboard = arr =>{
+        return arr;
+    };
+    const myBoard = createGameboard(arr);
+
     const checkShip = (boardThing)=>{
         switch(boardThing){
             case "1":
@@ -34,27 +28,36 @@ const Gameboard = () =>{
         };
     };
 
-    const checkSunk = ()=>{
-
+    const checkSunk = (boardThing)=>{
+        let sunk = boardThing.sunk();
+        if (sunk !== null){
+            totalSunk ++;
+            return sunk;
+        };
+        return;
     };
 
     const receiveAttack = (x,y) =>{
-        if (board[x][y] === "X"){
-            return;
+        if (myBoard[x][y] === "X"){
+            return false;
         }
-        if(board[x][y] === "O"){
-            return;
+        if(myBoard[x][y] === "O"){
+            return false;
         }
-        if(board[x][y] === " "){
-            board[x][y] = "O";
+        if(myBoard[x][y] === " "){
+            myBoard[x][y] = "O";
+            missedAttacks ++;
+            return true;
         };
-        let edit = checkShip(board[x][y]);
+        let edit = checkShip(myBoard[x][y]);
             edit.hit();
-            board[x][y] = "X";
-        
+            myBoard[x][y] = "X";
+            return true;
+        let sunk = checkSunk(myBoard[x][y]);
+        //if sunk return sunkmessage or something
     };
     
     return{
-        board,receiveAttack, missedAttacks
+        createGameboard,myBoard,receiveAttack, missedAttacks
     }
 };
