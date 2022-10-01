@@ -1,5 +1,3 @@
-import gameboard from './src/gameboard'
-
 const Player = enemyboard=>{
     let x; 
     let y; 
