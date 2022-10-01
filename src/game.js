@@ -35,4 +35,4 @@ playerGB.createGameboard(playerArr);
 const PC = Player(playerGB);
 const P1 = Player(PCgameBoard);
 
-
+export {PC, P1, PCgameBoard, playerGB};
